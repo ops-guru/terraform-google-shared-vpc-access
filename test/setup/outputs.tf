@@ -15,11 +15,11 @@
  */
 
 output "host_project_id" {
-  value = module.host_project.project_id
+  value = google_project.host.project_id
 }
 
 output "service_project_id" {
-  value = module.service_project.project_id
+  value = google_project.service.project_id
 }
 
 output "sa_key" {
@@ -40,15 +40,15 @@ output "billing_account" {
 }
 
 output "network_self_link" {
-  value = module.vpc.network_self_link
+  value = google_compute_network.vpc.self_link
 }
 
 output "network_name" {
-  value = module.vpc.network_name
+  value = google_compute_network.vpc.name
 }
 
 output "network" {
-  value = module.vpc.network
+  value = google_compute_network.vpc
 }
 
 output "random_string_for_testing" {

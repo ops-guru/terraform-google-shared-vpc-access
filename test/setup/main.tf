@@ -35,7 +35,11 @@ resource "random_id" "folder_rand" {
 }
 
 locals {
-  parent = var.folder_id == "" ? "organizations/${var.org_id}" : "folders/${replace(var.folder_id, "folders/", "")}"
+  parent               = var.folder_id == "" ? "organizations/${var.org_id}" : "folders/${replace(var.folder_id, "folders/", "")}"
+  host_project_name    = "ci-svpc-access-host-tests"
+  host_project_id      = format("${local.host_project_name}-%s", random_id.random_project_id_suffix.hex)
+  service_project_name = "ci-svpc-access-svc-tests"
+  service_project_id   = format("${local.service_project_name}-%s", random_id.random_project_id_suffix.hex)
 }
 
 resource "google_folder" "ci_shared_vpc_access_folder" {
@@ -43,46 +47,40 @@ resource "google_folder" "ci_shared_vpc_access_folder" {
   parent       = local.parent
 }
 
-module "host_project" {
-  source  = "terraform-google-modules/project-factory/google"
-  version = "~> 8.0"
-
-  name                 = "ci-svpc-access-host-tests"
-  random_project_id    = true
-  org_id               = var.org_id
-  folder_id            = google_folder.ci_shared_vpc_access_folder.id
-  billing_account      = var.billing_account
-  skip_gcloud_download = true
-  lien                 = false
-
-  disable_services_on_destroy = "false"
+resource "random_id" "random_project_id_suffix" {
+  byte_length = 2
 }
 
-module "vpc" {
-  source  = "terraform-google-modules/network/google//modules/vpc"
-  version = "~> 2.0"
-
-  project_id   = module.host_project.project_id
-  network_name = "ci-test-vpc"
-
-  shared_vpc_host = true
+resource "google_project" "host" {
+  name                = local.host_project_name
+  project_id          = local.host_project_id
+  folder_id           = google_folder.ci_shared_vpc_access_folder.name
+  billing_account     = var.billing_account
+  auto_create_network = false
 }
 
-module "service_project" {
-  source  = "terraform-google-modules/project-factory/google//modules/shared_vpc"
-  version = "~> 8.0"
+resource "google_project" "service" {
+  name                = local.service_project_id
+  project_id          = local.service_project_id
+  folder_id           = google_folder.ci_shared_vpc_access_folder.name
+  billing_account     = var.billing_account
+  auto_create_network = false
+}
 
-  name                 = "ci-svpc-access-svc-tests"
-  random_project_id    = true
-  org_id               = var.org_id
-  folder_id            = google_folder.ci_shared_vpc_access_folder.id
-  billing_account      = var.billing_account
-  shared_vpc           = module.vpc.project_id
-  shared_vpc_enabled   = true
-  skip_gcloud_download = true
-  lien                 = false
+resource "google_compute_network" "vpc" {
+  name                    = "ci-test-vpc"
+  project                 = google_project.host.project_id
+  auto_create_subnetworks = false
+}
 
-  disable_services_on_destroy = "false"
+resource "google_compute_shared_vpc_host_project" "shared_vpc_host" {
+  project = google_project.host.project_id
+}
+
+resource "google_compute_shared_vpc_service_project" "shared_vpc" {
+  host_project    = google_project.host.project_id
+  service_project = google_project.service.project_id
+  depends_on      = [google_compute_network.vpc]
 }
 
 resource "random_id" "random_string_for_testing" {
