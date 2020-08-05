@@ -37,3 +37,8 @@ suites:
       name: terraform
       command_timeout: 1800
       root_module_directory: test/fixtures/dataproc
+  - name: composer
+    driver:
+      name: terraform
+      command_timeout: 1800
+      root_module_directory: test/fixtures/composer

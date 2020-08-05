@@ -1,6 +1,6 @@
 # Dataproc Shared VPC Access
 
-This example illustrates how to enable a subnet in shared VPC for a [Dataproc cluster creation]( https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/network#creating_a_cluster_that_uses_a_vpc_network_in_another_project).
+This example illustrates how to set subnet permissions in a shared VPC for the [Dataproc](https://cloud.google.com/dataproc/docs/concepts/configuring-clusters/network#creating_a_cluster_that_uses_a_vpc_network_in_another_project).
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs

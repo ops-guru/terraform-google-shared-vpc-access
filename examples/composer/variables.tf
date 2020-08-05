@@ -1,3 +1,4 @@
+
 /**
  * Copyright 2020 Google LLC
  *
@@ -14,12 +15,17 @@
  * limitations under the License.
  */
 
-output "service_project_id" {
-  description = "Service Project ID"
-  value       = module.dataproc_svpc_access.service_project_id
+variable "host_project_id" {
+  description = "The ID of the host project which hosts the shared VPC"
+  type        = string
 }
 
-output "host_project_id" {
-  description = "Host Project ID"
-  value       = module.dataproc_svpc_access.host_project_id
+variable "service_project_id" {
+  description = "The ID of the service project"
+  type        = string
+}
+
+variable "network_name" {
+  description = "Shared VPC Network Name"
+  type        = string
 }

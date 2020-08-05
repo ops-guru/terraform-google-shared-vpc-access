@@ -14,12 +14,6 @@
  * limitations under the License.
  */
 
-output "service_project_id" {
-  description = "Service Project ID"
-  value       = module.dataproc_svpc_access.service_project_id
-}
-
-output "host_project_id" {
-  description = "Host Project ID"
-  value       = module.dataproc_svpc_access.host_project_id
+terraform {
+  required_version = "~> 0.12.6"
 }

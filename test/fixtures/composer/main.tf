@@ -14,12 +14,9 @@
  * limitations under the License.
  */
 
-output "service_project_id" {
-  description = "Service Project ID"
-  value       = module.dataproc_svpc_access.service_project_id
-}
-
-output "host_project_id" {
-  description = "Host Project ID"
-  value       = module.dataproc_svpc_access.host_project_id
+module "composer_svpc_access" {
+  source             = "../../../examples/composer"
+  host_project_id    = var.host_project_id
+  service_project_id = var.service_project_id
+  network_name       = var.network_name
 }

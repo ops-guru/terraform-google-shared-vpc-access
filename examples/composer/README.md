@@ -1,6 +1,6 @@
-# GKE Shared VPC Access
+# Dataproc Shared VPC Access
 
-This example illustrates how to set subnet permissions in a shared VPC for the [GKE](https://cloud.google.com/kubernetes-engine/docs/how-to/cluster-shared-vpc).
+This example illustrates how to set subnet permissions in a shared VPC for the [Cloud composer](https://cloud.google.com/composer/docs/how-to/managing/configuring-shared-vpc).
 
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Inputs
