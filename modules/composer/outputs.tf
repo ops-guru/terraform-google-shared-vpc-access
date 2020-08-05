@@ -14,9 +14,17 @@
  * limitations under the License.
  */
 
-output "project_id" {
+output "service_project_id" {
   description = "Service project ID."
   value       = var.service_project_id
+  depends_on = [
+    google_project_iam_member.composer_sa_access,
+  ]
+}
+
+output "host_project_id" {
+  description = "Host project ID."
+  value       = var.host_project_id
   depends_on = [
     google_project_iam_member.composer_sa_access,
   ]

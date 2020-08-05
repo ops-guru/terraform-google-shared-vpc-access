@@ -14,20 +14,9 @@
  * limitations under the License.
  */
 
-output "service_project_id" {
-  description = "Service project ID."
-  value       = var.service_project_id
-  depends_on = [
-    google_compute_subnetwork_iam_member.gke_shared_vpc_subnets,
-    google_project_iam_member.gke_host_agent,
-  ]
-}
-
-output "host_project_id" {
-  description = "Host project ID."
-  value       = var.host_project_id
-  depends_on = [
-    google_compute_subnetwork_iam_member.gke_shared_vpc_subnets,
-    google_project_iam_member.gke_host_agent,
-  ]
+module "gke_svpc_access" {
+  source             = "../../../examples/gke"
+  host_project_id    = var.host_project_id
+  service_project_id = var.service_project_id
+  network_name       = var.network_name
 }

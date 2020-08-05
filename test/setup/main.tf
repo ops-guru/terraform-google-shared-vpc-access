@@ -40,6 +40,16 @@ locals {
   host_project_id      = format("${local.host_project_name}-%s", random_id.random_project_id_suffix.hex)
   service_project_name = "ci-svpc-access-svc-tests"
   service_project_id   = format("${local.service_project_name}-%s", random_id.random_project_id_suffix.hex)
+  host_services = [
+    "cloudresourcemanager.googleapis.com",
+    "accesscontextmanager.googleapis.com",
+    "serviceusage.googleapis.com",
+  ]
+  service_services = [
+    "cloudresourcemanager.googleapis.com",
+    "accesscontextmanager.googleapis.com",
+    "serviceusage.googleapis.com",
+  ]
 }
 
 resource "google_folder" "ci_shared_vpc_access_folder" {
@@ -59,8 +69,24 @@ resource "google_project" "host" {
   auto_create_network = false
 }
 
+resource "google_project_service" "host_services" {
+  count                      = length(local.host_services)
+  service                    = local.host_services[count.index]
+  project                    = google_project.host.project_id
+  disable_dependent_services = true
+  disable_on_destroy         = false
+}
+
+resource "google_project_service" "service_services" {
+  count                      = length(local.service_services)
+  service                    = local.service_services[count.index]
+  project                    = google_project.service.project_id
+  disable_dependent_services = true
+  disable_on_destroy         = false
+}
+
 resource "google_project" "service" {
-  name                = local.service_project_id
+  name                = local.service_project_name
   project_id          = local.service_project_id
   folder_id           = google_folder.ci_shared_vpc_access_folder.name
   billing_account     = var.billing_account

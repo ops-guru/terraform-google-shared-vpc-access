@@ -1,3 +1,4 @@
+
 /**
  * Copyright 2020 Google LLC
  *
@@ -14,20 +15,17 @@
  * limitations under the License.
  */
 
-output "service_project_id" {
-  description = "Service project ID."
-  value       = var.service_project_id
-  depends_on = [
-    google_compute_subnetwork_iam_member.gke_shared_vpc_subnets,
-    google_project_iam_member.gke_host_agent,
-  ]
+variable "host_project_id" {
+  description = "The ID of the host project which hosts the shared VPC"
+  type        = string
 }
 
-output "host_project_id" {
-  description = "Host project ID."
-  value       = var.host_project_id
-  depends_on = [
-    google_compute_subnetwork_iam_member.gke_shared_vpc_subnets,
-    google_project_iam_member.gke_host_agent,
-  ]
+variable "service_project_id" {
+  description = "The ID of the service project"
+  type        = string
+}
+
+variable "network_name" {
+  description = "Shared VPC Network Name"
+  type        = string
 }

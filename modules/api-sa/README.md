@@ -28,6 +28,7 @@ module "api_shared_vpc_access" {
 
 | Name | Description |
 |------|-------------|
-| project\_id | Service project ID. |
+| host\_project\_id | Host project ID. |
+| service\_project\_id | Service project ID. |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -14,20 +14,6 @@
  * limitations under the License.
  */
 
-output "service_project_id" {
-  description = "Service project ID."
-  value       = var.service_project_id
-  depends_on = [
-    google_compute_subnetwork_iam_member.gke_shared_vpc_subnets,
-    google_project_iam_member.gke_host_agent,
-  ]
-}
-
-output "host_project_id" {
-  description = "Host project ID."
-  value       = var.host_project_id
-  depends_on = [
-    google_compute_subnetwork_iam_member.gke_shared_vpc_subnets,
-    google_project_iam_member.gke_host_agent,
-  ]
+terraform {
+  required_version = "~> 0.12.6"
 }
