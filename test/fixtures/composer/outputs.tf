@@ -23,3 +23,18 @@ output "host_project_id" {
   description = "Host Project ID"
   value       = module.composer_svpc_access.host_project_id
 }
+
+output "service_project_number" {
+  description = "Service Project Number"
+  value       = module.composer_svpc_access.service_project_number
+}
+
+output "composer_subnet_name" {
+  description = "Dataproc Subnet Name"
+  value       = module.composer_svpc_access.composer_subnet_name
+}
+
+output "composer_subnet_region" {
+  description = "Dataproc Subnet Name"
+  value       = module.composer_svpc_access.composer_subnet_region
+}

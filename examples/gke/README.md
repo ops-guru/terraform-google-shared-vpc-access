@@ -15,7 +15,10 @@ This example illustrates how to set subnet permissions in a shared VPC for the [
 
 | Name | Description |
 |------|-------------|
+| gke\_subnet\_name | GKE Subnet Name |
+| gke\_subnet\_region | GKE Subnet Name |
 | host\_project\_id | Host Project ID |
 | service\_project\_id | Service Project ID |
+| service\_project\_number | Service Project Number |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

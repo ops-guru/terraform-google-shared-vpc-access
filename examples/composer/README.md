@@ -15,7 +15,10 @@ This example illustrates how to set subnet permissions in a shared VPC for the [
 
 | Name | Description |
 |------|-------------|
+| composer\_subnet\_name | Dataproc Subnet Name |
+| composer\_subnet\_region | Dataproc Subnet Name |
 | host\_project\_id | Host Project ID |
 | service\_project\_id | Service Project ID |
+| service\_project\_number | Service Project Number |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

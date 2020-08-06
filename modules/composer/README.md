@@ -36,5 +36,6 @@ module "composer_shared_vpc_access" {
 |------|-------------|
 | host\_project\_id | Host project ID. |
 | service\_project\_id | Service project ID. |
+| service\_project\_number | Service Project Number |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

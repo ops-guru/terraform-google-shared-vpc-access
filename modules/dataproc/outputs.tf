@@ -29,3 +29,15 @@ output "host_project_id" {
     google_compute_subnetwork_iam_member.dataproc_shared_vpc_subnets,
   ]
 }
+
+output "service_project_number" {
+  description = "Service Project Number"
+  value       = data.google_project.service_project.number
+}
+
+output "shared_vpc_subnets" {
+  description = "Shared VPC Subnets"
+  value       = var.shared_vpc_subnets
+  depends_on  = [google_compute_subnetwork_iam_member.dataproc_shared_vpc_subnets]
+}
+

@@ -30,5 +30,7 @@ module "dataproc_shared_vpc_access" {
 |------|-------------|
 | host\_project\_id | Host project ID. |
 | service\_project\_id | Service project ID. |
+| service\_project\_number | Service Project Number |
+| shared\_vpc\_subnets | Shared VPC Subnets |
 
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

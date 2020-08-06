@@ -1,0 +1,16 @@
+name: composer
+depends:
+  - name: inspec-gcp
+    git: https://github.com/inspec/inspec-gcp.git
+    tag: v0.10.0
+attributes:
+  - name: host_project_id
+    required: true
+  - name: service_project_id
+    required: true
+  - name: service_project_number
+    required: true
+  - name: composer_subnet_name
+    required: true
+  - name: composer_subnet_region
+    required: true

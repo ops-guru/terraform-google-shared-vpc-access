@@ -1,0 +1,16 @@
+name: gke
+depends:
+  - name: inspec-gcp
+    git: https://github.com/inspec/inspec-gcp.git
+    tag: v0.10.0
+attributes:
+  - name: host_project_id
+    required: true
+  - name: service_project_id
+    required: true
+  - name: service_project_number
+    required: true
+  - name: gke_subnet_name
+    required: true
+  - name: gke_subnet_region
+    required: true

@@ -23,3 +23,18 @@ output "host_project_id" {
   description = "Host Project ID"
   value       = module.dataproc_svpc_access.host_project_id
 }
+
+output "service_project_number" {
+  description = "Service Project Number"
+  value       = module.dataproc_svpc_access.service_project_number
+}
+
+output "dataproc_subnet_name" {
+  description = "Dataproc Subnet Name"
+  value       = module.dataproc_svpc_access.dataproc_subnet_name
+}
+
+output "dataproc_subnet_region" {
+  description = "Dataproc Subnet Name"
+  value       = module.dataproc_svpc_access.dataproc_subnet_region
+}

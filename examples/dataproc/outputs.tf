@@ -23,3 +23,18 @@ output "host_project_id" {
   description = "Host Project ID"
   value       = module.dataproc_shared_vpc.host_project_id
 }
+
+output "service_project_number" {
+  description = "Service Project Number"
+  value       = module.dataproc_shared_vpc.service_project_number
+}
+
+output "dataproc_subnet_name" {
+  description = "Dataproc Subnet Name"
+  value       = google_compute_subnetwork.dataproc_subnet.name
+}
+
+output "dataproc_subnet_region" {
+  description = "Dataproc Subnet Name"
+  value       = google_compute_subnetwork.dataproc_subnet.region
+}

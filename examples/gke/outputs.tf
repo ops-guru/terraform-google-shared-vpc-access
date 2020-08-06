@@ -23,3 +23,18 @@ output "host_project_id" {
   description = "Host Project ID"
   value       = module.gke_shared_vpc.host_project_id
 }
+
+output "service_project_number" {
+  description = "Service Project Number"
+  value       = module.gke_shared_vpc.service_project_number
+}
+
+output "gke_subnet_name" {
+  description = "GKE Subnet Name"
+  value       = google_compute_subnetwork.gke_subnet.name
+}
+
+output "gke_subnet_region" {
+  description = "GKE Subnet Name"
+  value       = google_compute_subnetwork.gke_subnet.region
+}

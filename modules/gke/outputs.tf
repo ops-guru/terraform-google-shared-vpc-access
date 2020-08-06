@@ -31,3 +31,14 @@ output "host_project_id" {
     google_project_iam_member.gke_host_agent,
   ]
 }
+
+output "service_project_number" {
+  description = "Service Project Number"
+  value       = data.google_project.service_project.number
+}
+
+output "shared_vpc_subnets" {
+  description = "Shared VPC Subnets"
+  value       = var.shared_vpc_subnets
+  depends_on  = [google_compute_subnetwork_iam_member.gke_shared_vpc_subnets]
+}
