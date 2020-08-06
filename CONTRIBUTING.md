@@ -103,4 +103,3 @@ maintain a standard of quality.
 ### Execution
 
 Run `make docker_test_lint`.
-
